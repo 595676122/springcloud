@@ -1,0 +1,57 @@
+server:
+  port: 2001
+spring:
+  application:
+    name: seata-order-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    alibaba:
+      seata:
+        tx-service-group: order_service_group
+
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/seata_order?allowMultiQueries=true
+      driverClassName: com.mysql.jdbc.Driver
+      username: root
+      password: 111111
+#seata:
+#  enabled: true
+#  application-id: applicationName
+##  tx-service-group: my_test_tx_group
+#  tx-service-group: order_service_group
+#  enable-auto-data-source-proxy: true
+#  client:
+#    support:
+#      spring:
+#        datasource-autoproxy: false
+#  service:
+#    grouplist:
+#      default: 127.0.0.1:8091
+#    enable-degrade: false
+#    disable-global-transaction: false
+#
+#  config:
+#    type: nacos
+#    nacos:
+#      serverAddr: localhost:8848
+#  registry:
+#    type: nacos
+#    nacos:
+#      server-addr: localhost:8848
+
+
+
+feign:
+  hystrix:
+    enabled: false
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
